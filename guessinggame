@@ -24,7 +24,7 @@ def get_result(guess, target):
         return "Too high"
     elif guess < target:
         return "Too low"
-    return "Correct"
+    return "Correct!"
 
 def game():
     print("Select Difficulty:")
@@ -41,4 +41,29 @@ def game():
     target = generate_number(settings["range"])
     attempts_left = settings["attempts"]
     attempts_used = 0
-   
+    print(f"\nGuess a number between 1 and {settings['range']}")
+    while attempts_left > 0 and not guessed_correctly:
+        user_input = input("Enter your guess: ")
+        if is_valid_number(user_input):
+            guess = int(user_input)
+            if 1 <= guess <= settings["range"]:
+                attempts_used += 1
+                attempts_left -= 1
+
+                feedback = get_result(guess, target)
+
+                if feedback == "Correct":
+                    print("Congratulations You guessed the number")
+                    print(f"Attempts used: {attempts_used}")
+                    guessed_correctly = True
+                else:
+                    print(feedback)
+                    print(f"Attempts left: {attempts_left}")
+            else:
+                print(f"Enter a number between 1 and {settings['range']}.")
+        else:
+            print("Invalid input. Please enter a number.")
+
+    if not guessed_correctly:
+        print(f"Unfortunately Game Over. The number was {target}.")
+
