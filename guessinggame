@@ -11,3 +11,17 @@ def get_diff_settings(choice):
 
 def generate_number(max):
     return random.randint(1, max)
+
+def is_valid_number(input):
+    try:
+        int(input)
+        return True
+    except ValueError:
+        return False
+
+def get_result(guess, target):
+    if guess > target:
+        return "Too high"
+    elif guess < target:
+        return "Too low"
+    return "Correct"
