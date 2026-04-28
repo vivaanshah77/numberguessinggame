@@ -1,7 +1,5 @@
-def get_difficulty_settings(choice):
-    """
-    Returns settings based on difficulty choice.
-    """
+import random
+def get_diff_settings(choice):
     if choice == "1":
         return {"mode": "Easy", "range": 50, "attempts": 10}
     elif choice == "2":
@@ -11,5 +9,5 @@ def get_difficulty_settings(choice):
     return None
 
 
-def generate_number(max_range):
-    return random.randint(1, max_range)
+def generate_number(max):
+    return random.randint(1, max)
