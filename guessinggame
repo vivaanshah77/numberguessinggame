@@ -3,9 +3,9 @@ def get_diff_settings(choice):
     if choice == "1":
         return {"mode": "Easy", "range": 50, "attempts": 10}
     elif choice == "2":
-        return {"mode": "Medium", "range": 100, "attempts": 7}
+        return {"mode": "Medium", "range": 100, "attempts": 12}
     elif choice == "3":
-        return {"mode": "Hard", "range": 500, "attempts": 5}
+        return {"mode": "Hard", "range": 500, "attempts": 14}
     return None
 
 
@@ -29,8 +29,8 @@ def get_result(guess, target):
 def game():
     print("Select Difficulty:")
     print("1. Easy (1–50, 10 attempts)")
-    print("2. Medium (1–100, 7 attempts)")
-    print("3. Hard (1–500, 5 attempts)")
+    print("2. Medium (1–100, 12 attempts)")
+    print("3. Hard (1–500, 14 attempts)")
     settings = None
     while settings is None:
         choice = input("Enter choice options (1,2,3) : ")
