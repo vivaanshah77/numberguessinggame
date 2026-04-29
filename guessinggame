@@ -1,16 +1,16 @@
 import random
+def generate_number(max):
+    return random.randint(1, max)
+
 def get_diff_settings(choice):
     if choice == "1":
         return {"mode": "Easy", "range": 50, "attempts": 10}
     elif choice == "2":
-        return {"mode": "Medium", "range": 100, "attempts": 12}
+        return {"mode": "Medium", "range": 100, "attempts": 8}
     elif choice == "3":
-        return {"mode": "Hard", "range": 500, "attempts": 14}
+        return {"mode": "Hard", "range": 500, "attempts": 7}
     return None
 
-
-def generate_number(max):
-    return random.randint(1, max)
 
 def is_valid_number(input):
     try:
@@ -24,25 +24,25 @@ def get_result(guess, target):
         return "Too high"
     elif guess < target:
         return "Too low"
-    return "Correct!"
+    return "Correct"
 
 def game():
     print("Select Difficulty:")
     print("1. Easy (1–50, 10 attempts)")
-    print("2. Medium (1–100, 12 attempts)")
-    print("3. Hard (1–500, 14 attempts)")
+    print("2. Medium (1–100, 8 attempts)")
+    print("3. Hard (1–500, 7 attempts)")
     settings = None
     while settings is None:
-        choice = input("Enter choice options (1,2,3) : ")
+        choice = input("Enter choice options: (1,2,3) : ")
         settings = get_diff_settings(choice)
         if settings is None:
             print("Not a choice. Try again.")
-    guessed_correctly = False
+    guessed_right = False
     target = generate_number(settings["range"])
     attempts_left = settings["attempts"]
     attempts_used = 0
     print(f"\nGuess a number between 1 and {settings['range']}")
-    while attempts_left > 0 and not guessed_correctly:
+    while attempts_left > 0 and not guessed_right:
         user_input = input("Enter your guess: ")
         if is_valid_number(user_input):
             guess = int(user_input)
@@ -55,7 +55,7 @@ def game():
                 if feedback == "Correct":
                     print("Congratulations You guessed the number")
                     print(f"Attempts used: {attempts_used}")
-                    guessed_correctly = True
+                    guessed_right = True
                 else:
                     print(feedback)
                     print(f"Attempts left: {attempts_left}")
@@ -64,6 +64,17 @@ def game():
         else:
             print("Invalid input. Please enter a number.")
 
-    if not guessed_correctly:
+    if not guessed_right:
         print(f"Unfortunately Game Over. The number was {target}.")
 
+def main():
+    print("Welcome to the Number Guessing Game")
+    play_again = "yes"
+    while play_again == "yes":
+        game()
+        play_again = input("\nPlay again? (yes/no): ").lower()
+
+    print("Thanks for playing")
+
+if __name__ == "__main__":
+    main()
